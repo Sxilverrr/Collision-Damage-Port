@@ -1,7 +1,6 @@
 package com.sxilverr.collisiondamage.neoforge;
 
 import com.sxilverr.collisiondamage.CollisionDamage;
-import com.sxilverr.collisiondamage.config.ConfigSpec;
 import com.sxilverr.collisiondamage.handler.CollisionDamageHelper;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -47,6 +46,7 @@ public class CollisionDamageNeoForge {
 
     public CollisionDamageNeoForge(IEventBus modEventBus, ModContainer container) {
         container.registerConfig(ModConfig.Type.SERVER, ConfigSpec.SPEC);
+        modEventBus.addListener(ConfigSpec::onLoad);
         modEventBus.addListener(CollisionDamageNeoForge::registerPayloads);
         NeoForge.EVENT_BUS.addListener(CollisionDamageNeoForge::onPlayerTick);
         NeoForge.EVENT_BUS.addListener(CollisionDamageNeoForge::onEntityTick);

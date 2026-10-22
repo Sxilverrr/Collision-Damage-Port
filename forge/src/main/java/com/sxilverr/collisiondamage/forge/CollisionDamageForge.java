@@ -1,7 +1,6 @@
 package com.sxilverr.collisiondamage.forge;
 
 import com.sxilverr.collisiondamage.CollisionDamage;
-import com.sxilverr.collisiondamage.config.ConfigSpec;
 import com.sxilverr.collisiondamage.handler.CollisionDamageHelper;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;

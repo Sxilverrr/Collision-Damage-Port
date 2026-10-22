@@ -1,12 +1,9 @@
-package com.sxilverr.collisiondamage.config;
+package com.sxilverr.collisiondamage.neoforge;
 
-import com.sxilverr.collisiondamage.CollisionDamage;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
+import com.sxilverr.collisiondamage.config.Config;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-@EventBusSubscriber(modid = CollisionDamage.MODID)
 public class ConfigSpec {
 
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
@@ -49,9 +46,8 @@ public class ConfigSpec {
 
     public static final ModConfigSpec SPEC = BUILDER.build();
 
-    @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
-        if (event.getConfig().getSpec() != SPEC) return;
+        if (event instanceof ModConfigEvent.Unloading || event.getConfig().getSpec() != SPEC) return;
         Config.accelerationThreshold = ACCELERATION_THRESHOLD.get();
         Config.damageMultiplier = DAMAGE_MULTIPLIER.get();
         Config.damageTypeWall = DAMAGE_TYPE_WALL.get();

@@ -1,6 +1,7 @@
-package com.sxilverr.collisiondamage.config;
+package com.sxilverr.collisiondamage.forge;
 
 import com.sxilverr.collisiondamage.CollisionDamage;
+import com.sxilverr.collisiondamage.config.Config;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
