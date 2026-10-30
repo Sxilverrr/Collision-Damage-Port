@@ -8,10 +8,13 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -44,8 +47,9 @@ public class CollisionDamageNeoForge {
         }
     }
 
-    public CollisionDamageNeoForge(IEventBus modEventBus, ModContainer container) {
+    public CollisionDamageNeoForge(IEventBus modEventBus, ModContainer container, Dist dist) {
         container.registerConfig(ModConfig.Type.SERVER, ConfigSpec.SPEC);
+        if (dist.isClient()) container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         modEventBus.addListener(ConfigSpec::onLoad);
         modEventBus.addListener(CollisionDamageNeoForge::registerPayloads);
         NeoForge.EVENT_BUS.addListener(CollisionDamageNeoForge::onPlayerTick);
